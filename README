@@ -1,1 +1,12 @@
+# This software requires the following to run:
 
+[Java SE Development Kit 13.0.2](https://www.oracle.com/java/technologies/javase-jdk13-downloads.html)
+[Apache Tomcat 9](https://tomcat.apache.org/download-90.cgi)
+
+# To build and run this project:
+
+1. Download and install the software requirements
+2. Download the following java WAR file: date_assessment.war
+3. Navigate to the $CATALINA_HOME/lib folder of Tomcat9
+4. Add the .war file and start the Tomcat9 server
+5. In your browser, go to http://localhost:8080/date_assessment/MainServlet
