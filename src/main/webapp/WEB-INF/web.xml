@@ -2,13 +2,13 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <servlet>
     <description></description>
-    <display-name>Main</display-name>
-    <servlet-name>Main</servlet-name>
-    <servlet-class>com.assessment.Main</servlet-class>
+    <display-name>MainServlet</display-name>
+    <servlet-name>MainServlet</servlet-name>
+    <servlet-class>com.assessment.MainServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Main</servlet-name>
-    <url-pattern>/Main</url-pattern>
+    <servlet-name>MainServlet</servlet-name>
+    <url-pattern>/MainServlet</url-pattern>
   </servlet-mapping>
   <display-name>date_assessment</display-name>
   <welcome-file-list>
