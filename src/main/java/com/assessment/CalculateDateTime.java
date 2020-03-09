@@ -2,34 +2,71 @@
 
 package com.assessment;
 
-import java.lang.Math;
 import java.util.List;
 import java.util.Map;
 
 interface Subtract
 { 
-    int diff(String x, String y); 
+    int diff(int x, int y); 
 } 
 
 class CalculateDateTime
 {
-    static int calculate(String[] date1, String[] date2, Map<String, Integer> months, List<String> index)
+	private int day1, day2, month1, month2, year1, year2;
+	Map<String, Integer> months;
+	List<String> index;
+	
+	public CalculateDateTime(Map<String, Integer> months, List<String> index)
+	{
+		this.months = months;
+		this.index = index;
+	}
+	
+	public void setDates(String[] date1, String[] date2)
+	{
+		day1 = Integer.parseInt(date1[2]);
+		day2 = Integer.parseInt(date2[2]);
+		month1 = Integer.parseInt(date1[1]) - 1;
+		month2 = Integer.parseInt(date2[1]) - 1;
+		year1 = Integer.parseInt(date1[0]);
+		year2 = Integer.parseInt(date2[0]);
+	}
+	
+    private int calculate()
     {
-        int day = 0, month = 0, year = 0, leap = 0, total = 0;
+        int day = 0, month = 0, year = 0, leap = 0;
+        int tempYear = year1;
 
         // Lambda Function Definition
-        Subtract out = (String x, String y) -> Integer.parseInt(y) - Integer.parseInt(x);
+        Subtract out = (int x, int y) -> Math.abs(y - x);
 
-        day = out.diff(date1[1], date2[1]);
-        for (int i = 0; i < (Integer.parseInt(date2[0]) - 1) - (Integer.parseInt(date1[0]) - 1); i++) 
+        day = out.diff(day1, day2);
+        year = out.diff(year1, year2);
+        
+        for (int i = 0; i < (month2) - (month1); i++) 
         {
-            month += months.get(index.get(Integer.parseInt(date1[0]) - 1 + i));
+            month += months.get(index.get(month1 + i));
         }
-        year = out.diff(date1[2], date2[2]);
-        leap = year / 4;
-
+        
+        for (int j = 0; j < year2 - year1; j++)
+        {
+        	if (tempYear % 4 == 0 && tempYear % 100 == 0 && tempYear % 400 == 0)
+        	{
+        		leap += 1;
+        	} 
+        	else if(tempYear % 4 == 0 && tempYear % 100 != 0) 
+        	{
+        		leap += 1;
+        	}	
+        	tempYear += 1;
+        }
+        
         // Final calculation, user input order irrelevant
-        total = Math.abs(month + day + year * 365 + leap);
-        return total;
+        return month + day + year * 365 + leap;
+    }
+    
+    public int getTotal()
+    {
+    	return calculate();
     }
 }
